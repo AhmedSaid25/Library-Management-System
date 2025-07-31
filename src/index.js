@@ -1,26 +1,26 @@
-require('dotenv').config();
 const express = require('express');
-// Adds HTTP security headers.
-const helmet = require('helmet');
-// Logs incoming HTTP requests in the console.
-const morgan = require('morgan');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const sequelize = require('./config/db.config');
+const { sequelize } = require('./models/initModels');
+const errorHandler = require('./middleware/errorHandler');
+const requestLogger = require('./middleware/requestLogger');
+
+const bookRoutes = require('./routes/bookRoutes');
 
 const app = express();
 app.use(express.json());
-app.use(helmet());
-app.use(morgan('dev'));
+app.use(requestLogger);
 
-// Test DB connection
+app.use('/books', bookRoutes);
+
+// Error handler
+app.use(errorHandler);
+
 sequelize.authenticate()
   .then(() => console.log('Database connected'))
-  .catch(err => console.error('DB Connection Error:', err));
+  .then(() => sequelize.sync({ alter: true }))
+  .then(() => console.log('Tables synced'))
+  .catch(err => console.error('DB Error:', err));
 
-// Routes placeholder
-app.get('/', (req, res) => {
-  res.send('Library Management System API is running...');
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(3000, () => console.log('Server running on port 3000'));
