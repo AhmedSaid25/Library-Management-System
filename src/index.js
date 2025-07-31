@@ -7,12 +7,16 @@ const errorHandler = require('./middleware/errorHandler');
 const requestLogger = require('./middleware/requestLogger');
 
 const bookRoutes = require('./routes/bookRoutes');
+const borrowerRoutes = require('./routes/borrowerRoutes');
+const borrowedBookRoutes = require('./routes/borrowedBookRoutes');
 
 const app = express();
 app.use(express.json());
 app.use(requestLogger);
 
 app.use('/books', bookRoutes);
+app.use('/borrowers', borrowerRoutes);
+app.use('/borrowed-books', borrowedBookRoutes);
 
 // Error handler
 app.use(errorHandler);
