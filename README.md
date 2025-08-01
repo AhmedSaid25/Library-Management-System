@@ -75,7 +75,7 @@ The API documentation will be available in Swagger once implemented.
 ### 📊 Database Design
 The full database schema and ERD are available in the design document:
 
-📄 Library Management System – Database Design [docs](Library_Management_Database_Design.pdf)
+📄 Library Management System – Database Design (https://github.com/AhmedSaid25/Library-Management-System/blob/main/docs/Library_Management_Database_Design.pdf)
 
 ### 🔒 Security
 Helmet for setting HTTP security headers
