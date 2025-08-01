@@ -28,7 +28,19 @@ exports.validateBorrowerUpdate = (borrower) => {
   }
 };
 
-exports.validateBorrowBook = (borrowerId, bookId) => {
+exports.validateBorrowBook = (borrowerId, bookId ,dueDate) => {
   if (!borrowerId) throw new Error('Borrower ID is required');
   if (!bookId) throw new Error('Book ID is required');
+    if (dueDate) {
+    const today = new Date();
+    const parsedDate = new Date(dueDate);
+
+    if (isNaN(parsedDate)) {
+      throw new Error('Invalid due date format. Please use YYYY-MM-DD.');
+    }
+
+    if (parsedDate <= today) { 
+      throw new Error('Due date must be after today.');
+    }
+  }
 };

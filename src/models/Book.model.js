@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     shelf_location: { type: DataTypes.STRING }
   }, { 
     tableName: 'books',
-    timestamps: true
+    timestamps: true ,
+      indexes: [
+      { fields: ['title'] },
+      { fields: ['author'] },
+      { fields: ['isbn'] }
+    ]
   });
 
   return Book;
