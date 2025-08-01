@@ -1,8 +1,9 @@
 const borrowedBookService = require('../services/borrowedBookService');
-
+const { validateBorrowBook } = require('../utils/validation');
 exports.borrowBook = async (req, res, next) => {
   try {
-    const result = await borrowedBookService.borrowBook(req.params.id, req.body.bookId);
+    validateBorrowBook(req.params.id, req.body.bookId);
+    const result = await borrowedBookService.borrowBook(req.params.id, req.body.bookId,req.body.dueDate);
     res.status(201).json(result);
   } catch (err) {
     next(err);
@@ -11,7 +12,7 @@ exports.borrowBook = async (req, res, next) => {
 
 exports.returnBook = async (req, res, next) => {
   try {
-    const result = await borrowedBookService.returnBook(req.params.id, req.body.bookId);
+    const result = await borrowedBookService.returnBook(req.params.id);
     res.json(result);
   } catch (err) {
     next(err);

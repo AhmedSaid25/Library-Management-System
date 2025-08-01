@@ -1,4 +1,5 @@
 const borrowerService = require('../services/borrowerService');
+const { validateBorrower , validateBorrowerUpdate } = require('../utils/validation');
 
 exports.getBorrowers = async (req, res, next) => {
   try {
@@ -11,6 +12,7 @@ exports.getBorrowers = async (req, res, next) => {
 
 exports.addBorrower = async (req, res, next) => {
   try {
+    validateBorrower(req.body);
     const borrower = await borrowerService.createBorrower(req.body);
     res.status(201).json(borrower);
   } catch (err) {
@@ -30,6 +32,7 @@ exports.getBorrowerById = async (req, res, next) => {
 
 exports.updateBorrower = async (req, res, next) => {
   try {
+    validateBorrowerUpdate(req.body);
     const updatedBorrower = await borrowerService.updateBorrower(req.params.id, req.body);
     if (!updatedBorrower) return res.status(404).json({ message: 'Borrower not found' });
     res.json(updatedBorrower);

@@ -4,21 +4,31 @@ exports.borrowBook = async (borrowerId, bookId, dueDate) => {
   const book = await Book.findByPk(bookId);
   if (!book || book.quantity < 1) throw new Error('Book not available');
 
+  // Set borrowed_date to now
+  const borrowedDate = new Date();
+
+  // If dueDate is not provided, set it to 14 days from now
+  if (!dueDate) {
+    const d = new Date(borrowedDate);
+    d.setDate(d.getDate() + 14);
+    dueDate = d;
+  }
+
   book.quantity -= 1;
   await book.save();
 
   return await BorrowedBook.create({
     borrower_id: borrowerId,
     book_id: bookId,
+    borrowed_date: borrowedDate,
     due_date: dueDate
   });
 };
 
-exports.returnBook = async (borrowerId, bookId) => {
+exports.returnBook = async (borrowerId) => {
   const borrowedBook = await BorrowedBook.findOne({
     where: {
       borrower_id: borrowerId,
-      book_id: bookId,
       returned_date: null
     }
   });
@@ -28,7 +38,7 @@ exports.returnBook = async (borrowerId, bookId) => {
   borrowedBook.returned_date = new Date();
   await borrowedBook.save();
 
-  const book = await Book.findByPk(bookId);
+  const book = await Book.findByPk(borrowedBook.book_id);
   if (book) {
     book.quantity += 1;
     await book.save();

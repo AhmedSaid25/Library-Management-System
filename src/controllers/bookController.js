@@ -1,5 +1,5 @@
 const bookService = require('../services/bookService');
-const { validateBook } = require('../utils/validation');
+const { validateBook , validateBookUpdate } = require('../utils/validation');
 
 exports.addBook = async (req, res, next) => {
   try {
@@ -32,6 +32,7 @@ exports.getBookById = async (req, res, next) => {
 
 exports.updateBook = async (req, res, next) => {
   try {
+    validateBookUpdate(req.body);
     const updatedBook = await bookService.updateBook(req.params.id, req.body);
     if (!updatedBook) return res.status(404).json({ message: 'Book not found' });
     res.json(updatedBook);

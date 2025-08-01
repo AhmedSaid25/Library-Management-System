@@ -4,7 +4,7 @@ const borrowedBookController = require('../controllers/borrowedBookController');
 
 router.post('/borrowers/:id/borrow', borrowedBookController.borrowBook);
 
-router.post('/borrowers/:id/return', borrowedBookController.returnBook);
+router.put('/borrowers/:id/return', borrowedBookController.returnBook);
 
 router.get('/borrowers/:id/loans', borrowedBookController.listBorrowedBooks);
 

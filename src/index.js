@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
 dotenv.config();
 
 const { sequelize } = require('./models/initModels');
@@ -11,6 +12,7 @@ const borrowerRoutes = require('./routes/borrowerRoutes');
 const borrowedBookRoutes = require('./routes/borrowedBookRoutes');
 
 const app = express();
+app.use(helmet());
 app.use(express.json());
 app.use(requestLogger);
 
