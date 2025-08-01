@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const borrowedBookController = require('../controllers/borrowedBookController');
+const { borrowLimit } = require('../middlewares/rateLimiters');
 
-router.post('/borrowers/:id/borrow', borrowedBookController.borrowBook);
+router.post('/borrowers/:id/borrow',borrowLimit, borrowedBookController.borrowBook);
 
 router.put('/borrowers/:id/return', borrowedBookController.returnBook);
 
