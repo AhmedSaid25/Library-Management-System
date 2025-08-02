@@ -55,18 +55,20 @@ sequelize.sync()
 
 ### 📖 API Documentation
 After starting the application, you can access the live, interactive API documentation here: 
-``` http://localhost:3000/api-docs
+```
+ http://localhost:3000/api-docs
 ```
 ### Raw OpenAPI Spec
 If you need the raw OpenAPI (Swagger) JSON:
-```http://localhost:3000/api-docs-json
+```
+http://localhost:3000/api-docs-json
 ```
 
 ### Offline API Documentation
 We also provide offline documentation generated from the latest API:
-- API_Documentation.html – Interactive HTML (works offline)
+- API_Documentation.html – Interactive HTML (works offline) : https://github.com/AhmedSaid25/Library-Management-System/blob/main/api-docs.html
 
-- API_Documentation.pdf – Printable PDF
+- API_Documentation.pdf – Printable PDF : https://github.com/AhmedSaid25/Library-Management-System/blob/main/docs/APIs%20Document.pdf
 
 ### Regenerate API Docs
 If you make changes to the API, regenerate docs with:
