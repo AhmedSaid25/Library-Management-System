@@ -11,6 +11,7 @@ const requestLogger = require('./middleware/requestLogger');
 const bookRoutes = require('./routes/bookRoutes');
 const borrowerRoutes = require('./routes/borrowerRoutes');
 const borrowedBookRoutes = require('./routes/borrowedBookRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 
 const app = express();
 app.use(helmet());
@@ -20,6 +21,7 @@ app.use(requestLogger);
 app.use('/books', bookRoutes);
 app.use('/borrowers', borrowerRoutes);
 app.use('/borrowed-books', borrowedBookRoutes);
+app.use('/reports', reportRoutes);
 
 // Error handler
 app.use(errorHandler);

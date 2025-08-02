@@ -44,3 +44,19 @@ exports.validateBorrowBook = (borrowerId, bookId ,dueDate) => {
     }
   }
 };
+exports.validateDateRange = (start_date, end_date) => {
+  if (!start_date || !end_date) {
+    throw new Error('start_date and end_date are required');
+  }
+
+  const start = new Date(start_date);
+  const end = new Date(end_date);
+
+  if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+    throw new Error('Invalid date format. Use YYYY-MM-DD');
+  }
+
+  if (start > end) {
+    throw new Error('start_date cannot be after end_date');
+  }
+};
