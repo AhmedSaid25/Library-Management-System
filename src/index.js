@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
+const swaggerDocs = require('./swagger');
 dotenv.config();
 
 const { sequelize } = require('./models/initModels');
@@ -22,6 +23,11 @@ app.use('/borrowed-books', borrowedBookRoutes);
 
 // Error handler
 app.use(errorHandler);
+
+swaggerDocs(app);
+
+console.log('Swagger available at http://localhost:3000/api-docs');
+
 
 sequelize.authenticate()
   .then(() => console.log('Database connected'))

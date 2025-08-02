@@ -15,27 +15,11 @@ Design and implement a simple library management system to manage books and borr
 - **Database:** MySQL
 - **Security:** Helmet
 - **Environment Variables:** dotenv
+- **Documentation:** Swagger UI + Redoc
+- **Rate Limiting:** express-rate-limit
 
 ---
 
-## 📂 Project Structure
-```
-Library-Management-System/
-│-- src/
-│ ├── config/ # Database configuration 
-│ ├── models/ # Sequelize models
-│ ├── controllers/ # Request handlers
-│ ├── routes/ # API routes
-│ ├── middlewares/ # Security & validation middleware
-│ └── index.js # Application entry point
-│
-│-- docs/
-│ └── Library_Management_Database_Design.pdf
-│
-├── package.json
-├── .env
-└── README.md
-```
 ---
 
 ## ⚙️ Setup Instructions
@@ -70,7 +54,29 @@ npm start
 sequelize.sync()
 
 ### 📖 API Documentation
-The API documentation will be available in Swagger once implemented.
+After starting the application, you can access the live, interactive API documentation here: 
+``` http://localhost:3000/api-docs
+```
+### Raw OpenAPI Spec
+If you need the raw OpenAPI (Swagger) JSON:
+```http://localhost:3000/api-docs-json
+```
+
+### Offline API Documentation
+We also provide offline documentation generated from the latest API:
+- API_Documentation.html – Interactive HTML (works offline)
+
+- API_Documentation.pdf – Printable PDF
+
+### Regenerate API Docs
+If you make changes to the API, regenerate docs with:
+```
+# Export Swagger JSON
+curl http://localhost:3000/api-docs-json -o swagger.json
+
+# Generate offline HTML (Redoc)
+npx redoc-cli bundle swagger.json -o docs/API_Documentation.html --options.inlineSpec=true
+```
 
 ### 📊 Database Design
 The full database schema and ERD are available in the design document:
