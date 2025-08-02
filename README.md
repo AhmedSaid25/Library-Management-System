@@ -4,8 +4,25 @@
 The **Library Management System** is a Node.js application for managing books, borrowers, and the borrowing process.  
 It allows adding, updating, deleting, and searching for books and borrowers, as well as tracking borrowing and due dates.
 
-## 🎯 Objective
-Design and implement a simple library management system to manage books and borrowers efficiently.
+## 🚀 Features
+
+✅ **Manage Books** – Add, update, delete, and view books in the library.  
+✅ **Manage Borrowers** – Add, update, delete, and view borrower records.  
+✅ **Borrow & Return Books** – Borrowers can borrow books and return them.  
+✅ **Book Search** – Search books by title, author, or ISBN.  
+✅ **Overdue Tracking** – Identify books that are overdue and who borrowed them.  
+✅ **Rate Limiting** – Limit requests on sensitive endpoints to prevent abuse.  
+✅ **API Documentation** – Interactive Swagger docs available at `/api-docs`.  
+✅ **CSV Reports** –  
+   - Borrowing records for a specific date range  
+   - Overdue borrows from the last month  
+   - All borrow records from the last month  
+
+## 🔮 Upcoming Work
+
+- [ ] **Docker Support** – Dockerize the application using `docker-compose`.  
+- [ ] **Authentication** – Implement basic authentication for API access.  
+- [ ] **Unit Testing** – Add Jest-based tests for controllers and services.  
 
 ---
 
